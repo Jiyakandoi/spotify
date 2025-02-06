@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Songs - Spotify Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/Spotify_favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ef9a692198.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .main-container {
+            padding: 20px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1db954;
+            border-radius: 8px;
+        }
+        .topbar h2 {
+            margin: 0;
+        }
+        .liked-songs-content {
+            margin-top: 20px;
+            padding: 10px;
+        }
+        .liked-song-item {
+            display: flex;
+            align-items: center;
+            background-color: #282828;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .liked-song-item:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+        .liked-song-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        .song-info {
+            flex-grow: 1;
+        }
+        .song-info h4, .song-info p {
+            margin: 0;
+        }
+        .play {
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #181818;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="topbar">
+            <h2>Liked Songs</h2>
+        </div>
+
+        <div class="liked-songs-content">
+            <h3>Your Liked Songs</h3>
+            <div class="liked-song-item">
+                <img src="./images/RapCaviar.jpg" alt="Rap Caviar">
+                <div class="song-info">
+                    <h4>RapCaviar</h4>
+                    <p>New Music from Cardi B, Megan Thee Stallion...</p>
+                </div>
+                <div class="play" onclick="playSong('/audio/rapcaviar.mp3')">
+                    <span class="fa fa-play"></span>
+                </div>
+            </div>
+            <!-- Add more liked song items here... -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Spotify Clone. All rights reserved.</p>
+    </div>
+
+    <script>
+        function playSong(songSrc) {
+            let audioPlayer = document.getElementById("audioPlayer");
+            if (audioPlayer.src !== songSrc) {
+                audioPlayer.src = songSrc;
+            }
+            audioPlayer.play();
+        }
+    </script>
+    
+    <audio id="audioPlayer"></audio>
+</body>
+</html>

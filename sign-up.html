@@ -1,0 +1,115 @@
+<form id="signupForm" method="post" action="/php/signin-login/register.php">
+    <input type="text" name="username" id="username" placeholder="Username" required><br>
+    <input type="email" name="email" id="email" placeholder="Email" required><br>
+    <input type="password" name="password" id="password" placeholder="Password" required><br>
+    <input type="submit" class="btn" value="Register" name="register" style="color: #fff; background-color: #17a647;" />
+</form>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    let formData = new FormData(this);
+
+    fetch("register.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        if (data.status === "success") {
+            window.location.href="log-in.html";
+        }
+    });
+});
+</script>
+
+<head>
+    <style>
+        /* General body and layout */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Sign Up Form Container */
+        #signupForm {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Title */
+        #signupForm h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1DB954;
+            font-weight: bold;
+        }
+
+        /* Input field styling */
+        #signupForm input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #333;
+            background-color: #222;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        #signupForm input:focus {
+            outline: none;
+            border-color: #1DB954;
+        }
+
+        /* Submit Button */
+        #signupForm button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #signupForm button:hover {
+            background-color: #17a647;
+        }
+
+        /* Styling for links */
+        .recover, .or, .links {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .recover a, .links button {
+            color: #1DB954;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .recover a:hover, .links button:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+

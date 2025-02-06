@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Spotify Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/Spotify_favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ef9a692198.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .main-container {
+            padding: 20px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1db954;
+            border-radius: 8px;
+        }
+        .topbar h2 {
+            margin: 0;
+        }
+        #searchInput {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+        }
+        .search-results {
+            margin-top: 20px;
+            padding: 10px;
+        }
+        .result-item {
+            display: flex;
+            align-items: center;
+            background-color: #282828;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .result-item:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+        .result-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        .result-info h4, .result-info p {
+            margin: 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #181818;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="topbar">
+            <h2>Search</h2>
+            <input type="text" id="searchInput" placeholder="Search for songs, artists, albums..." onkeyup="searchSongs()" />
+        </div>
+
+        <div class="search-results" id="searchResults">
+            <h3>Search Results</h3>
+            <div class="result-item">
+                <img src="./images/arijit.jpg" />
+                    <div class="play" onclick="playSong('audio/arijit.mp3', 'Arijit Singh')">
+                        <audio id="audioPlayer">
+                            <source src="audio/arijit.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Arijit Singh</h4>
+                    <p>A soulful voice that brings deep emotions to life.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Spotify Clone. All rights reserved.</p>
+    </div>
+    
+    <script>
+        function searchSongs() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let results = document.getElementsByClassName("result-item");
+            
+            for (let i = 0; i < results.length; i++) {
+                let text = results[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    results[i].style.display = "flex";
+                } else {
+                    results[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

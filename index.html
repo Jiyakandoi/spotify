@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spotify Clone – Stream your favorite music, playlists, and podcasts.">
+    <meta name="keywords" content="music, spotify, playlists, streaming, podcasts">
+    <title>Spotify Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/Spotify_favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ef9a692198.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .spotify-playlists .list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .spotify-playlists .item {
+            width: 180px;
+            text-align: center;
+            background: #333;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .spotify-playlists .item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .play {
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 5px;
+            color: green;
+        }
+
+        /* Master Player Bar */
+        .master-player {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #181818;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .song-info {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .controls button {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <a href="">
+                <img src="./images/Spotify Logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="navigation">
+            <ul>
+                <li><a href="index.html"><span class="fa fa-home"></span> Home</a></li>
+                <li><a href="search.html"><span class="fa fa-search"></span> Search</a></li>
+                <li><a href="library.html"><span class="fa fa-book"></span> Your Library</a></li>
+                <li><a href="liked-song.html"><span class="fa fa-heart"></span> Liked Songs</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="topbar">
+            <div class="prev-next-buttons">
+                <button type="button" class="fa fa-chevron-left"></button>
+                <button type="button" class="fa fa-chevron-right"></button>
+            </div>
+            <div class="navbar">
+                <ul>
+                    <li><a href="sign-up.html">Sign Up</a></li>
+                    <li><a href="log-in.html">Log In</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Spotify Playlists -->
+        <div class="spotify-playlists">
+            <h2>Spotify Playlists</h2>
+            <div class="list">
+                <div class="item">
+                    <img src="./images/arijit.jpg" />
+                    <div class="play" onclick="playSong(0)">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Arijit Singh</h4>
+                    <p>A soulful voice that brings deep emotions to life.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/Atif-Aslam.jpg" />
+                    <div class="play" onclick="playSong(1)">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Atif Aslam</h4>
+                    <p>A unique blend of melody and passion in every song.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/darshan.jpeg" />
+                    <div class="play" onclick="playSong('audio/darshan.mp3', 'Darshan Rawal')">
+                        <audio id="audioPlayer">
+                            <source src="audio/darshan.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Darshan Rawal</h4>
+                    <p>Young and energetic, his music speaks of love.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/diljeet.jpeg" />
+                    <div class="play" onclick="playSong('audio/diljeet.mp3', 'Diljeet Dosanjh')">
+                        <audio id="audioPlayer">
+                            <source src="audio/diljeet.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Diljit Dosanjh</h4>
+                    <p>Bringing Punjabi beats and Bollywood vibes together.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/honey singh.jpeg" />
+                    <div class="play" onclick="playSong('audio/honey.mp3', 'Honey Singh')">
+                        <audio id="audioPlayer">
+                            <source src="audio/honey.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Honey Singh</h4>
+                    <p>The king of desi hip-hop and energetic beats.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/king.jpeg" />
+                    <div class="play" onclick="playSong('audio/king.mp3', 'King')">
+                        <audio id="audioPlayer">
+                            <source src="audio/king.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>King</h4>
+                    <p>Fusing rap and melody to create chart-topping hits.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/kishore Da.jpeg" />
+                    <div class="play" onclick="playSong('audio/kishore.mp3', 'Kishore Da')">
+                        <audio id="audioPlayer">
+                            <source src="audio/kishore.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Kishore Da</h4>
+                    <p>The golden voice of Bollywood’s evergreen era.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/kk.jpeg" />
+                    <div class="play" onclick="playSong('audio/kk.mp3', 'KK')">
+                        <audio id="audioPlayer">
+                            <source src="audio/kk.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>KK</h4>
+                    <p>A voice that evokes nostalgia and timeless emotions.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/Lata ji.jpeg" />
+                    <div class="play" onclick="playSong('audio/lata.mp3', 'Lata Mangeshkar')">
+                        <audio id="audioPlayer">
+                            <source src="audio/lata.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Lata Mangeshkar</h4>
+                    <p>The nightingale of India, a true legend.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/shreya.jpeg" />
+                    <div class="play" onclick="playSong('audio/shreya.mp3', 'Shreya Ghoshal')">
+                        <audio id="audioPlayer">
+                            <source src="audio/shreya.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Shreya Ghoshal</h4>
+                    <p>A magical voice that touches the soul.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/vishal.jpeg" />
+                    <div class="play" onclick="playSong('audio/vishal.mp3', 'Vishal Mishra')">
+                        <audio id="audioPlayer">
+                            <source src="audio/vishal.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Vishal Mishra</h4>
+                    <p>A rising star with deep and heartfelt songs.</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/papon.jpeg" />
+                    <div class="play" onclick="playSong('audio/papon.mp3', 'Papon')">
+                        <audio id="audioPlayer">
+                            <source src="audio/papon.mp3" type="audio/mpeg">
+                        </audio>
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Papon</h4>
+                    <p>Blending folk and contemporary music with grace.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview">
+            <div class="text">
+                <h6>Now Playing</h6>
+                <p id="current-song">No song playing</p>
+            </div>
+            <audio id="audioPlayer">
+                <source src="" type="audio/mpeg">
+            </audio>
+            <div class="player-controls">
+                <button class="play" onclick="playAudio()">▶️ Play</button>
+                <button class="pause" onclick="pauseAudio()">⏸️ Pause</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let audio = document.getElementById("audioPlayer");
+        let currentSong = document.getElementById("current-song");
+
+        function playSong(songPath, artistName) {
+            audio.src = songPath;
+            audio.play();
+            currentSong.innerText = "Now Playing: " + artistName;
+        }
+
+        function playAudio() {
+            if (audio.src) {
+                audio.play();
+            }
+        }
+
+        function pauseAudio() {
+            audio.pause();
+        }
+    </script>
+
+        <div class="spotify-playlists">
+            <h2>Sound of India</h2>
+            <div class="list">
+                <div class="item">
+                    <img src="./images/The Sound of Mumbai.jpg" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>The Sound of Mum...</h4>
+                    <p>The songs that define, unite and distinguish...</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/The Sound of Kolkata.jpg" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>The Sound of Kolka...</h4>
+                    <p>The songs that define, unite and distinguish...</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/The Sound of Delhi.jpg" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>The Sound of Delhi...</h4>
+                    <p>The songs that define, unite and distinguish...</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/The Sound of Bengaluru.jpg" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>The Sound of Ben...</h4>
+                    <p>The songs that define, unite and distinguish...</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/The Sound of Chennai.jpg" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>The Sound of Chen...</h4>
+                    <p>The songs that define, unite and distinguish...</p>
+                </div>
+
+                <div class="item">
+                    <img src="./images/The Sound of Hyderabad.jpg" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>The Sound of Hyde...</h4>
+                    <p>The songs that define, unite and distinguish...</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <div class="preview">
+        <div class="text">
+            <h6>Preview of Spotify</h6>
+            <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+        </div>
+        <div class="button">
+            <button type="button">Sign up free</button>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/ef9a692198.js" crossorigin="anonymous"></script>
+</body>
+</html>

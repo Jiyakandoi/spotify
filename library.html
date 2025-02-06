@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Library - Spotify Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/Spotify_favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ef9a692198.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .main-container {
+            padding: 20px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1db954;
+            border-radius: 8px;
+        }
+        .topbar h2 {
+            margin: 0;
+        }
+        .library-content {
+            margin-top: 20px;
+            padding: 10px;
+        }
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            background-color: #282828;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .playlist-item:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+        .playlist-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        .playlist-info {
+            flex-grow: 1;
+        }
+        .playlist-info h4, .playlist-info p {
+            margin: 0;
+        }
+        .play {
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #181818;
+        }
+    </style>
+    <script>
+        function playSong(songSrc) {
+            let audioPlayer = document.getElementById("audioPlayer");
+            if (audioPlayer.src !== songSrc) {
+                audioPlayer.src = songSrc;
+            }
+            audioPlayer.play();
+        }
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="topbar">
+            <h2>Your Library</h2>
+        </div>
+
+        <div class="library-content">
+            <h3>Your Playlists</h3>
+            <div class="playlist-item">
+                <img src="/images/mix.jpg" alt="Playlist Cover" />
+                <div class="playlist-info">
+                    <h4>Chill Hits</h4>
+                    <p>Relax to the best chill music!</p>
+                </div>
+                <div class="play" onclick="playSong('/audio/diljeet.mp3')">
+                    <span class="fa fa-play"></span>
+                </div>
+            </div>
+            <!-- Add more playlist items here... -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Spotify Clone. All rights reserved.</p>
+    </div>
+    
+    <audio id="audioPlayer"></audio>
+</body>
+</html>
